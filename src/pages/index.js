@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import firebase from '../firebase';
+import 'firebase/auth';
 
 import Layout from '../components/layout'
 import Player from '../components/player';

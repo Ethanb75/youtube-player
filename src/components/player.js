@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
+import 'firebase/database'
 import YT from 'react-youtube';
 
 import leftChev from '../assets/chevrons-left.svg';
