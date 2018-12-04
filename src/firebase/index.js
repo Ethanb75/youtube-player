@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+
 var config = {
   apiKey: "AIzaSyDgt3sJqy9kcZKtAcpt9f8EBmgk2COeoXI",
   authDomain: "player-996a3.firebaseapp.com",
