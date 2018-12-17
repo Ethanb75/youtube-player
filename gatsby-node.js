@@ -15,3 +15,5 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+
+console.log(`yt api key: ${process.env.YT_API_KEY}`);
