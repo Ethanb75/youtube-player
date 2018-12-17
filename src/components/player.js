@@ -7,9 +7,8 @@ import rightChev from '../assets/chevrons-right.svg';
 import minus from '../assets/minus-square.svg';
 
 const Youtube = require('simple-youtube-api');
-console.log(`yt api key: ${process.env.YT_API_KEY}`);
-const youtubeData = new Youtube(process.env.YT_API_KEY);
-// console.log(`yt api key: ${process.env.YT_API_KEY}`);
+const youtubeData = new Youtube(process.env.GATSBY_YT_API_KEY);
+
 
 
 // window.youtube = youtubeData;
