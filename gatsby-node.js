@@ -3,5 +3,15 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     node: {
+//       fs: "empty"
+//     }
+//   })
+// };
 // You can delete this file if you're not using it
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})

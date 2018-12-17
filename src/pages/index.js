@@ -85,6 +85,7 @@ export default class IndexPage extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
+        // console.log(user.uid);
         that.setState({ isLoggedIn: true, fbUser: user })
       } else {
         // No user is signed in.
@@ -155,7 +156,7 @@ export default class IndexPage extends Component {
             </div>
         }
 
-        <Player isLoggedIn={isLoggedIn} />
+        <Player isLoggedIn={isLoggedIn} user={fbUser} />
 
       </Layout>
     )

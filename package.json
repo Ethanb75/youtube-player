@@ -1,8 +1,8 @@
 {
   "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "description": "Youtube playlist app",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Ethan B",
   "dependencies": {
     "firebase": "^5.5.9",
     "gatsby": "^2.0.53",
@@ -16,7 +16,8 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
-    "react-youtube": "^7.8.0"
+    "react-youtube": "^7.8.0",
+    "simple-youtube-api": "^5.1.1"
   },
   "keywords": [
     "gatsby"
