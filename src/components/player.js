@@ -10,15 +10,6 @@ const Youtube = require('simple-youtube-api');
 const youtubeData = new Youtube(process.env.GATSBY_YT_API_KEY);
 
 
-
-// window.youtube = youtubeData;
-
-// youtubeData.getVideo('blah')
-//   .then(video => {
-//     // window.videoInfo = video;
-//     console.log(`The video's title is ${video.title}`);
-//   }).catch(console.log)
-
 // replace default playlist with new playlist if changed
 export default class Player extends Component {
   state = {
@@ -79,15 +70,32 @@ export default class Player extends Component {
       console.log('list done');
     } else {
       this.setState({ currentSongIndex: oldIndex + 1 });
+      if (this.props.notificationPermission === true) {
+        this.newNotification();
+      }
     }
   }
 
-  componentDidUpdate() {
+  newNotification() {
+    let options = {
+      body: `${this.state.currentSongList[this.state.currentSongIndex].title}`
+    }
+    let notif = new Notification('Now Playing: ', options);
+    return setTimeout(notif.close.bind(notif), 4000);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
 
     if (this.props.isLoggedIn === false && this.state.loadedPlaylistData === true) {
       console.log('setting loaded playlist to false')
       this.setState({ loadedPlaylistData: false, currentSongList: [], playlistArr: ["default playlist"] })
     }
+
+    // if the previous song index is different, post notification with new song
+    if (prevState.currentSongIndex !== this.state.currentSongIndex) {
+      // this.newNotification();
+    }
+
     window.test = this.state;
   }
 
@@ -123,12 +131,7 @@ export default class Player extends Component {
 
         return <div>Loading...</div>
       } else {
-        // let playlistArr = Object.entries(fbSnap).map(a => a[0]);
-        // let currentPlaylist = Object.entries(fbSnap)[0][1];
-        // let songArr = Object.entries(currentPlaylist).map(el => el[1].url);
 
-
-        // on click set index to 0
         let playlistElems = playlistArr.map((playlistName, i) => {
           return (
             <li

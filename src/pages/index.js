@@ -12,6 +12,7 @@ export default class IndexPage extends Component {
   state = {
     isLoggedIn: false,
     isLoginModalOpen: false,
+    notificationPermission: false,
     fbUser: {}
   }
 
@@ -85,17 +86,25 @@ export default class IndexPage extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
-        // console.log(user.uid);
         that.setState({ isLoggedIn: true, fbUser: user })
       } else {
         // No user is signed in.
         that.setState({ isLoggedIn: false })
       }
     });
+
+    if ("Notification" in window) {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          // var notification = new Notification('yo yo what it do its ur apperoo');
+          that.setState({ notificationPermission: true })
+        }
+      });
+    }
   }
   render() {
 
-    const { isLoginModalOpen, fbUser, isLoggedIn } = this.state;
+    const { isLoginModalOpen, fbUser, isLoggedIn, notificationPermission } = this.state;
 
     return (
       <Layout>
@@ -156,7 +165,7 @@ export default class IndexPage extends Component {
             </div>
         }
 
-        <Player isLoggedIn={isLoggedIn} user={fbUser} />
+        <Player isLoggedIn={isLoggedIn} user={fbUser} notificationPermission={notificationPermission} />
 
       </Layout>
     )
