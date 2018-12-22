@@ -6,6 +6,9 @@ import leftChev from '../assets/chevrons-left.svg';
 import rightChev from '../assets/chevrons-right.svg';
 import minus from '../assets/minus-square.svg';
 
+//components
+import NewPlaylist from './newPlaylist.js';
+
 const Youtube = require('simple-youtube-api');
 const youtubeData = new Youtube(process.env.GATSBY_YT_API_KEY);
 
@@ -24,12 +27,18 @@ export default class Player extends Component {
     ]
   }
 
-  // addNewPlaylist(playlistName) {
-  //   let that = this;
-  //   firebase.database().ref(that.props.user.uid).set({
-  //     [`${playlistName}`]: "no data"
-  //   });
-  // }
+  addNewPlaylist(playlistName) {
+    let that = this;
+    let oldList = this.state.playlistArr;
+
+    oldList.push(playlistName);
+    this.setState({
+      playlistArr: oldList
+    })
+    // firebase.database().ref(that.props.user.uid).set({
+    //   [`${playlistName}`]: "no data"
+    // });
+  }
 
   removeSongFromList(index) {
     let { playlistArr, currentPlaylistIndex, fbSnap, currentSongList } = this.state;
@@ -91,16 +100,12 @@ export default class Player extends Component {
       this.setState({ loadedPlaylistData: false, currentSongList: [], playlistArr: ["default playlist"] })
     }
 
-    // if the previous song index is different, post notification with new song
-    if (prevState.currentSongIndex !== this.state.currentSongIndex) {
-      // this.newNotification();
-    }
-
     window.test = this.state;
   }
 
   componentDidMount() {
-
+    // bind this so can modify state for parent component in a child component
+    this.addNewPlaylist = this.addNewPlaylist.bind(this);
   }
   render() {
     const { isLoggedIn, user } = this.props;
@@ -117,15 +122,21 @@ export default class Player extends Component {
       if (loadedPlaylistData === false) {
         firebase.database().ref('/' + user.uid).once('value').then(function (snapshot) {
           if (snapshot.val() === null) {
-            // user hasn't entered any data
+            // user hasn't entered any data on ANY playlists
             that.setState({ loadedPlaylistData: true })
           } else {
+            // user has data on at least 1 playlist
             //TODO: make a check for a playlist with no songs
-            let currentPlaylist = Object.entries(snapshot.val())[currentPlaylistIndex][1];
-            let songArr = Object.entries(currentPlaylist).map(el => { return { url: el[1].url, title: el[1].title } })
-            let playlistArr = Object.entries(snapshot.val()).map(a => a[0]);
+            if (Object.entries(snapshot.val())[currentPlaylistIndex] === undefined) {
+              // if the playlist isn't found 
+              that.setState({ loadedPlaylistData: true, currentSongList: [] });
+            } else {
+              let currentPlaylist = Object.entries(snapshot.val())[currentPlaylistIndex][1];
+              let songArr = Object.entries(currentPlaylist).map(el => { return { url: el[1].url, title: el[1].title } })
+              let playlistArr = Object.entries(snapshot.val()).map(a => a[0]);
 
-            that.setState({ fbSnap: snapshot.val(), loadedPlaylistData: true, currentSongList: songArr, playlistArr });
+              that.setState({ fbSnap: snapshot.val(), loadedPlaylistData: true, currentSongList: songArr, playlistArr });
+            }
           }
         });
 
@@ -164,11 +175,12 @@ export default class Player extends Component {
             <div className="videoList">
               <ul className="playlists">
                 {playlistElems}
-                <li
-                  onClick={console.log('new list')}
+                {/* <li
+                  onClick={() => this.addNewPlaylist('new list')}
                 >
                   <span>add playlist (+)</span>
-                </li>
+                </li> */}
+                <NewPlaylist addNewPlaylist={this.addNewPlaylist} />
               </ul>
               <ul className="songList">
                 {songElems}
