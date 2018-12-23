@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
+
 .video {
   display: flex;
   /* padding: 0 9.2vw; */
@@ -15,6 +17,8 @@ body, html {
 
 body {
   overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 .videoPlayer {
@@ -22,6 +26,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.videoPlayer__title {
+  margin-top: 0;
+  font-size: 18px;
 }
 
 .videoNext button, .videoLast button {
@@ -54,11 +63,6 @@ body {
   width: 30vw;
 }
 
-.videoList ul:last-of-type {
-  flex-grow: 1;
-  overflow-y: scroll;
-}
-
 /* below is ul for playlist tabs */
 .playlists {
   overflow: initial;
@@ -88,14 +92,50 @@ body {
 }
 
 .playlists > li > span {
-  /* position: absolute; */
+  white-space: nowrap;
 }
 
-.songList li > span {
+.songList {
+  margin-left: 0;
+  margin-bottom: 0;
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.songList > li {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  /* padding: 1.5rem 0 1.5rem 2rem; */
+  padding: .5rem 1.25rem;
+  background-color: #fafafa;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.songList > li.active {
+  font-weight: 700;
+}
+
+.songList > li:nth-of-type(2n) {
+  background-color: #f1f1f1;
+}
+
+.songList > li > span {
   cursor: pointer;
+  white-space: nowrap;
+  padding-left: 2rem;
+  font-size: 13px;
 }
 
 .songList li > button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  height: 100%;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -103,6 +143,7 @@ body {
 
 .songList li > button img {
   opacity: 0;
+  width: 16px;
 }
 
 .songList li:hover > button img{
@@ -180,12 +221,16 @@ body {
   max-width: 62vw;
 }
 
-.loginBtn {
+.login {
   position: absolute;
   z-index: 12;
   right: 1rem;
   top: 1rem;
   display: flex;
+}
+
+.login__info {
+  margin-right: 2rem;
 }
 
 .login__reg {

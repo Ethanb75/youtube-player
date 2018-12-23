@@ -155,12 +155,12 @@ export default class IndexPage extends Component {
 
         {
           isLoggedIn ?
-            <div className="loginBtn">
-              <div>{fbUser.email || fbUser.email}</div>
+            <div className="login">
+              <div className="login__info">{fbUser.email || fbUser.email}</div>
               <button onClick={() => this.logOut()}>Logout</button>
             </div>
             :
-            <div className="loginBtn">
+            <div className="login">
               <button onClick={() => this.setState({ isLoginModalOpen: true })}>Login or Register</button>
             </div>
         }

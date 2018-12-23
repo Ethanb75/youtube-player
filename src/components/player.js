@@ -13,6 +13,18 @@ const Youtube = require('simple-youtube-api');
 const youtubeData = new Youtube(process.env.GATSBY_YT_API_KEY);
 
 
+//TODO:
+/*
+* See if you can add a skip song button to web notification, to skip song without navigating to page
+
+*/
+
+
+
+
+
+
+
 // replace default playlist with new playlist if changed
 export default class Player extends Component {
   state = {
@@ -208,19 +220,22 @@ export default class Player extends Component {
                   <img src={leftChev} />
                 </button>
               </div>
-              <YT
-
-                // videoId={videoList.length > 0 ? videoList[currentSongIndex].split('v=')[1] : ""}
-                videoId={currentSongList.length > 0 ? currentSongList[currentSongIndex].url.split('v=')[1] : ""}
-                onReady={autoPlay ? ev => { ev.target.playVideo() } : ""}
-                onStateChange={autoPlay ? ev => { if (ev.data === 5) ev.target.playVideo() } : ""}
-                onEnd={ev => this.nextVideoOnEnd(ev)}
-                // fix below: plays next video on error before data is loaded from server
-                onError={ev => {
-                  // this.nextVideoOnEnd(ev);
-                  console.log('err!');
-                }}
-              />
+              <div>
+                <YT
+                  videoId={currentSongList.length > 0 ? currentSongList[currentSongIndex].url.split('v=')[1] : ""}
+                  onReady={autoPlay ? ev => { ev.target.playVideo() } : ""}
+                  onStateChange={autoPlay ? ev => { if (ev.data === 5) ev.target.playVideo() } : ""}
+                  onEnd={ev => this.nextVideoOnEnd(ev)}
+                  // fix below: plays next video on error before data is loaded from server
+                  onError={ev => {
+                    // this.nextVideoOnEnd(ev);
+                    console.log('err!');
+                  }}
+                />
+                <div className="videoPlayer__title">
+                  {currentSongList[currentSongIndex].title}
+                </div>
+              </div>
               <div className="videoNext">
                 <button
                   className={currentSongIndex + 1 === currentSongList.length ? "disabled" : ""}
