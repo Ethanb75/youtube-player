@@ -111,9 +111,9 @@ export default class IndexPage extends Component {
         {/* login modal below */}
         <div className={isLoginModalOpen ? "loginWrap open" : "loginWrap"}>
           <div>
-            <h3>Login</h3>
+            <h3>Login Securely</h3>
             <div className="login__auth">
-              <button onClick={() => this.logInWithGoogle()}>login with Google</button>
+              <button className="login__google" onClick={() => this.logInWithGoogle()}>Continue with Google</button>
             </div>
             <div className="login__form">
               <form onSubmit={(event, data) => {
@@ -126,10 +126,13 @@ export default class IndexPage extends Component {
               }}>
                 <input type="email" placeholder="account email" />
                 <input type="password" placeholder="password" />
-                <input type="submit" value="login" />
+                <input type="submit" value="Login" />
               </form>
             </div>
-            <span>Or</span>
+            <div className="login__break">
+              <span>Or</span>
+              <div className="br"></div>
+            </div>
             <div className="login__reg">
               <h3>Register</h3>
               <form onSubmit={event => {

@@ -195,15 +195,11 @@ body {
   width: 100%;
   height: 100%;
   z-index: 13;
-  background: rgb(40, 40, 40);
+  background-color: rgba(41,48,59,0.8);
   transform: translateY(100%);
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.loginWrap > div {
-  text-align: center;
 }
 
 .loginWrap__close {
@@ -219,6 +215,11 @@ body {
 
 .loginWrap > div {
   max-width: 62vw;
+  min-width: 320px;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 6px;
+  background-color: white;
 }
 
 .login {
@@ -227,14 +228,41 @@ body {
   right: 1rem;
   top: 1rem;
   display: flex;
+  color: #29303B;
 }
 
 .login__info {
   margin-right: 2rem;
 }
 
-.login__reg {
+.login__auth {
+  margin-bottom: 1rem;
+}
 
+.login__google {
+  background-color: #ef4231;
+  color: whitesmoke;
+}
+
+.login__reg {
+  margin-top: 1.5rem;
+}
+
+.login__break {
+  /* border-bottom: 1px solid rgba(25, 25, 25, .4); */
+}
+
+.login__break > span {
+  position: relative;
+  top: 11px;
+  padding: 0 11px;
+  background-color: white;
+}
+
+.br {
+  width: 100%;
+  background-color: #5460734d;
+  height: .5px;
 }
 
 .login__reg > form {
@@ -251,6 +279,26 @@ body {
   flex-direction: column;
 }
 
+.loginWrap > div h3 {
+  margin-bottom: 1rem;
+}
+
+.loginWrap > div input:not([type="submit"]) {
+  padding: 11px 10px 12px 40px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.loginWrap > div input[type="submit"], .loginWrap > div button {
+  white-space: nowrap;
+  width: 100%;
+  padding: 11px 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  font-weight: 700;
+}
+/* 
 .login__form > form input {
   width: 100%;
-}
+} */
