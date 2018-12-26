@@ -233,7 +233,7 @@ export default class Player extends Component {
                   }}
                 />
                 <div className="videoPlayer__title">
-                  {currentSongList[currentSongIndex].title}
+                  {currentSongList[currentSongIndex] ? currentSongList[currentSongIndex].title : ""}
                 </div>
               </div>
               <div className="videoNext">
