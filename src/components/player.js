@@ -221,6 +221,9 @@ export default class Player extends Component {
                 </button>
               </div>
               <div>
+                <div className="videoPlayer__count">
+                  {currentSongIndex} / {currentSongList.length}
+                </div>
                 <YT
                   videoId={currentSongList.length > 0 ? currentSongList[currentSongIndex].url.split('v=')[1] : ""}
                   onReady={autoPlay ? ev => { ev.target.playVideo() } : ""}
@@ -251,7 +254,13 @@ export default class Player extends Component {
       //if not logged in, load default player without values
     } else {
       return (
-        <div> default nonLogged player</div>
+        <div className="landing">
+          <div className="landing__header">
+            <h2>YT Playa</h2>
+            <p>At this point you must be currently Logged in to use</p>
+          </div>
+          <div className="landing__background"></div>
+        </div>
       )
     }
   }

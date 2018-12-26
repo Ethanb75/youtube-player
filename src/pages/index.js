@@ -162,26 +162,30 @@ export default class IndexPage extends Component {
               <div>
                 <button
                   onClick={() => {
-                    let filters = { filters: [{ services: ['battery_service'] }] };
 
-                    navigator
-                      .bluetooth
-                      .requestDevice({
-                        acceptAllDevices: true,
-                        // optionalServices: ['battery_service']
-                      })
-                      .then(device => {
-                        // Human-readable name of the device.
-                        console.log(device.name);
+                    alert('not ready yet fuck you')
+                    //   navigator
+                    //     .bluetooth
+                    //     .requestDevice({
+                    //       acceptAllDevices: true,
+                    //       // optionalServices: ['battery_service']
+                    //     })
+                    //     .then(device => {
+                    //       // Human-readable name of the device.
+                    //       console.log(device.name);
 
-                        // Attempts to connect to remote GATT Server.
-                        return device.gatt.connect();
-                      })
-                      .then(server => { console.log(server) })
-                      .catch(err => console.log(err))
+                    //       // Attempts to connect to remote GATT Server.
+                    //       return device.gatt.connect();
+                    //     })
+                    //     .then(server => { console.log(server) })
+                    //     .catch(err => console.log(err))
 
                   }}
-                >Connect Bluetooth(don't press rn)</button>
+                >Don't click me</button>
+                {/*
+                  Added above button to mess with
+                  friends helping me test the app
+                */}
               </div>
               <div className="login__info">{fbUser.email || fbUser.email}</div>
               <button onClick={() => this.logOut()}>Logout</button>

@@ -9,7 +9,10 @@ export default class NewPlaylist extends Component {
       <li
         // on click, should toggle for new pl
         // onClick={() => this.props.addNewPlaylist('new list')}
-        onClick={() => this.setState({ playlistFormShowing: true })}
+        onClick={() => {
+          this.setState({ playlistFormShowing: true })
+          alert('no new playlists rn')
+        }}
       >
         <span>add playlist (+)</span>
       </li>
