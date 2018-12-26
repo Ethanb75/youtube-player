@@ -222,7 +222,7 @@ export default class Player extends Component {
               </div>
               <div>
                 <div className="videoPlayer__count">
-                  {currentSongIndex} / {currentSongList.length}
+                  {currentSongIndex + 1} / {currentSongList.length}
                 </div>
                 <YT
                   videoId={currentSongList.length > 0 ? currentSongList[currentSongIndex].url.split('v=')[1] : ""}
